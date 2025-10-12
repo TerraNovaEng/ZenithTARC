@@ -1,283 +1,99 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TARC Redesign & Payload Notes - Zenith Team</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-            background-color: #f4f4f9;
-            color: #333;
-        }
-        .container {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 900px;
-            margin: auto;
-        }
-        h1 {
-            color: #007bff;
-            text-align: center;
-            border-bottom: 2px solid #007bff;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
-        h2 {
-            color: #28a745;
-            border-bottom: 1px solid #28a745;
-            padding-bottom: 5px;
-            margin-top: 30px;
-        }
-        .header-logo {
-            text-align: center;
-            font-size: 1.2em;
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #555;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        input[type="text"], textarea, select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            margin-top: 5px;
-        }
-        textarea {
-            resize: vertical;
-        }
-        .table-container {
-            overflow-x: auto;
-            margin-top: 15px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        .checkbox-group label {
-            display: inline-block;
-            font-weight: normal;
-            margin-right: 15px;
-        }
-        .sketch-area {
-            min-height: 200px;
-            border: 1px dashed #999;
-            padding: 10px;
-            margin-top: 10px;
-            background-color: #fafafa;
-        }
-        .btn-submit {
-            background-color: #007bff;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1.1em;
-            margin-top: 20px;
-            display: block;
-            width: 100%;
-        }
-        .btn-submit:hover {
-            background-color: #0056b3;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header-logo">🚀 TerraNova Engineering Lab - TARC Zenith Team</div>
-        <h1>TARC Redesign & Payload Safety Challenge Notes</h1>
-        <p style="text-align: center; font-style: italic;">Mission: Build for altitude, protect the astronaut (egg).</p>
+// --- CONFIGURATION ---
+// YOUR GOOGLE SHEET ID: 1Lx7uQGzaLJFYm8-AK3S1ZR90nrKyqGNvkrpe3iQzSPw
+const SHEET_ID = '1Lx7uQGzaLJFYm8-AK3S1ZR90nrKyqGNvkrpe3iQzSPw'; 
+const SHEET_NAME = 'Sheet1'; // Assuming your sheet tab name is the default 'Sheet1'
+const EMAIL_RECIPIENT = 'info@terranovaengineeringlab.com';
+const WEBSITE_URL = 'YOUR_TEAM_WEBSITE_URL'; // Replace this with your site's home page
+// -----------------------
 
-        <form action="YOUR_SERVER_ENDPOINT" method="POST">
-            <h2>🔧 Section 1: Rocket Redesign Log</h2>
 
-            <div class="form-group">
-                <label for="rocket_name">Rocket Name:</label>
-                <input type="text" id="rocket_name" name="rocket_name">
-            </div>
+function doPost(e) {
+  const sheet = SpreadsheetApp.openById(SHEET_ID).getSheetByName(SHEET_NAME);
+  const data = e.parameter;
 
-            <div class="form-group">
-                <label for="original_motor">Original Motor:</label>
-                <input type="text" id="original_motor" name="original_motor">
-            </div>
+  // --- 1. PROCESS CHECKBOXES (New Motor Options) ---
+  const newMotors = Array.isArray(data.new_motor) ? data.new_motor : (data.new_motor ? [data.new_motor] : []);
 
-            <div class="form-group">
-                <label>New Motor Options:</label>
-                <div class="checkbox-group">
-                    <label><input type="checkbox" name="new_motor" value="C11-5"> C11-5</label>
-                    <label><input type="checkbox" name="new_motor" value="D12-5"> D12-5</label>
-                    <label><input type="checkbox" name="new_motor" value="E9-6"> E9-6</label>
-                    <label><input type="checkbox" name="new_motor" value="Other"> Other:</label>
-                    <input type="text" name="other_motor_spec" placeholder="Specify if 'Other' is checked" style="width: 30%;">
-                </div>
-            </div>
+  // --- 2. BUILD THE ROW ARRAY FOR GOOGLE SHEET ---
+  // NOTE: The order of this array MUST match the column headers in your Google Sheet!
+  const row = [
+    // Meta Data
+    new Date(), 
+    
+    // Section 1: Rocket Redesign Log
+    data.rocket_name,
+    data.original_motor,
+    newMotors.includes('C11-5') ? 'Yes' : 'No', // New Motor Options (checkboxes)
+    newMotors.includes('D12-5') ? 'Yes' : 'No',
+    newMotors.includes('E9-6') ? 'Yes' : 'No',
+    newMotors.includes('Other') ? 'Yes' : 'No',
+    data.other_motor_spec,
+    data.recovery_system,
+    data.other_recovery_spec,
+    
+    // Design Notes Table
+    data.nc_original, data.nc_redesign,
+    data.bt_original, data.bt_redesign,
+    data.fins_original, data.fins_redesign,
+    data.motor_original, data.motor_redesign,
+    data.payload_original, data.payload_redesign,
+    data.cgcp_original, data.cgcp_redesign,
+    data.stability_original, data.stability_redesign,
+    
+    // Section 2: Simulation Results
+    data.apogee,
+    data.max_velocity,
+    data.stability_cal,
+    data.recovery_deployment,
+    
+    // Section 3: Egg Protection Lab - Materials Tested
+    data.foam_drop_height, data.foam_result, data.foam_notes,
+    data.bubble_drop_height, data.bubble_result, data.bubble_notes,
+    data.print_drop_height, data.print_result, data.print_notes,
+    data.other_material_name, data.other_drop_height, data.other_result, data.other_notes,
+    
+    // Sketch and Reflection
+    data.sketch_notes,
+    data.reflection_worked,
+    data.reflection_change,
+    data.reflection_relate
+  ];
 
-            <div class="form-group">
-                <label>Recovery System:</label>
-                <div class="checkbox-group">
-                    <label><input type="radio" name="recovery_system" value="Parachute"> Parachute</label>
-                    <label><input type="radio" name="recovery_system" value="Dual Deployment"> Dual Deployment</label>
-                    <label><input type="radio" name="recovery_system" value="Other"> Other:</label>
-                    <input type="text" name="other_recovery_spec" placeholder="Specify if 'Other' is checked" style="width: 30%;">
-                </div>
-            </div>
+  // --- 3. APPEND DATA AND SEND EMAIL ---
+  sheet.appendRow(row);
 
-            <h3>✏️ Design Notes</h3>
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Component</th>
-                            <th>Original Specs</th>
-                            <th>Redesign Plan</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Nose Cone</td>
-                            <td><textarea name="nc_original" rows="2"></textarea></td>
-                            <td><textarea name="nc_redesign" rows="2"></textarea></td>
-                        </tr>
-                        <tr>
-                            <td>Body Tube</td>
-                            <td><textarea name="bt_original" rows="2"></textarea></td>
-                            <td><textarea name="bt_redesign" rows="2"></textarea></td>
-                        </tr>
-                        <tr>
-                            <td>Fins</td>
-                            <td><textarea name="fins_original" rows="2"></textarea></td>
-                            <td><textarea name="fins_redesign" rows="2"></textarea></td>
-                        </tr>
-                        <tr>
-                            <td>Motor Mount</td>
-                            <td><textarea name="motor_original" rows="2"></textarea></td>
-                            <td><textarea name="motor_redesign" rows="2"></textarea></td>
-                        </tr>
-                        <tr>
-                            <td>Payload Bay</td>
-                            <td><textarea name="payload_original" rows="2"></textarea></td>
-                            <td><textarea name="payload_redesign" rows="2"></textarea></td>
-                        </tr>
-                        <tr>
-                            <td>CG / CP</td>
-                            <td><textarea name="cgcp_original" rows="2"></textarea></td>
-                            <td><textarea name="cgcp_redesign" rows="2"></textarea></td>
-                        </tr>
-                        <tr>
-                            <td>Stability Margin</td>
-                            <td><textarea name="stability_original" rows="2"></textarea></td>
-                            <td><textarea name="stability_redesign" rows="2"></textarea></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+  MailApp.sendEmail({
+    to: EMAIL_RECIPIENT,
+    subject: `🚀 NEW TARC ZENITH LOG: ${data.rocket_name || 'Untitled Entry'}`,
+    htmlBody: buildEmailBody(data, newMotors)
+  });
 
-            <h2>📊 Section 2: Simulation Results</h2>
-            <div class="form-group">
-                <label for="apogee">Apogee:</label>
-                <input type="text" id="apogee" name="apogee" placeholder="e.g., 255.4 m">
-            </div>
-            <div class="form-group">
-                <label for="max_velocity">Max Velocity:</label>
-                <input type="text" id="max_velocity" name="max_velocity" placeholder="e.g., 120.9 m/s">
-            </div>
-            <div class="form-group">
-                <label for="stability_cal">Stability:</label>
-                <input type="text" id="stability_cal" name="stability_cal" placeholder="e.g., 1.7 cal (Calibers)">
-            </div>
-            <div class="form-group">
-                <label>Recovery Deployment:</label>
-                <div class="checkbox-group">
-                    <label><input type="radio" name="recovery_deployment" value="At Apogee"> At Apogee</label>
-                    <label><input type="radio" name="recovery_deployment" value="Delayed"> Delayed</label>
-                    <label><input type="radio" name="recovery_deployment" value="Failed"> Failed</label>
-                </div>
-            </div>
+  // --- 4. RETURN SUCCESS PAGE ---
+  return HtmlService.createHtmlOutput('<h2 style="color:#007bff; text-align:center;">Success! Notes submitted to the TerraNova Log.</h2><p style="text-align:center;"><a href="' + WEBSITE_URL + '">Click here to return to the Team Site</a></p>').setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
+}
 
-            <h2>🥚 Section 3: Egg Protection Lab</h2>
-            <p style="font-style: italic;">Objective: Design and test a cradle that protects an egg (mass ~60g) from impact.</p>
 
-            <h3>🧪 Materials Tested</h3>
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Material</th>
-                            <th>Drop Height (m)</th>
-                            <th>Result (Intact/Cracked/Shattered)</th>
-                            <th>Notes</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Foam</td>
-                            <td><input type="text" name="foam_drop_height"></td>
-                            <td><input type="text" name="foam_result"></td>
-                            <td><textarea name="foam_notes" rows="1"></textarea></td>
-                        </tr>
-                        <tr>
-                            <td>Bubble Wrap</td>
-                            <td><input type="text" name="bubble_drop_height"></td>
-                            <td><input type="text" name="bubble_result"></td>
-                            <td><textarea name="bubble_notes" rows="1"></textarea></td>
-                        </tr>
-                        <tr>
-                            <td>3D Print Cradle</td>
-                            <td><input type="text" name="print_drop_height"></td>
-                            <td><input type="text" name="print_result"></td>
-                            <td><textarea name="print_notes" rows="1"></textarea></td>
-                        </tr>
-                        <tr>
-                            <td>Other: <input type="text" name="other_material_name"></td>
-                            <td><input type="text" name="other_drop_height"></td>
-                            <td><input type="text" name="other_result"></td>
-                            <td><textarea name="other_notes" rows="1"></textarea></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+// Function to build a nicely formatted HTML email (for info@terranovaengineeringlab.com)
+function buildEmailBody(data, newMotors) {
+  let html = `<h2 style="color:#007bff;">🚀 TARC ZENITH Submission: ${data.rocket_name || 'Untitled Entry'}</h2>`;
+  html += `<p><strong>Time:</strong> ${new Date().toLocaleString()}</p>`;
+  
+  html += `<h3 style="color:#28a745;">🔧 Section 1: Redesign Log</h3>`;
+  html += `<ul>
+    <li><strong>Original Motor:</strong> ${data.original_motor || 'N/A'}</li>
+    <li><strong>New Motors Tested:</strong> ${newMotors.join(', ') || 'None'}</li>
+    <li><strong>Recovery System:</strong> ${data.recovery_system || 'N/A'}</li>
+  </ul>`;
 
-            <h3>✏️ Sketch Your Cradle</h3>
-            <label for="sketch_notes">📐 (Use this space to describe and annotate your design, or indicate where the sketch is stored, e.g., 'Sketch attached on GitHub')</label>
-            <textarea id="sketch_notes" name="sketch_notes" class="sketch-area" placeholder="Describe the final payload cradle design here (dimensions, materials, suspension method, etc.)."></textarea>
+  html += `<h4 style="border-bottom: 1px solid #ccc;">Design Changes Summary</h4>`;
+  html += `<p><strong>Nose Cone Redesign:</strong> ${data.nc_redesign || 'No Change'}</p>`;
+  html += `<p><strong>Stability Margin Redesign:</strong> ${data.stability_original || 'N/A'} -> ${data.stability_redesign || 'N/A'}</p>`;
+  
+  html += `<h3 style="color:#28a745;">💬 Reflection Summary</h3>`;
+  html += `<p><strong>What worked best?</strong> ${data.reflection_worked || 'No Entry'}</p>`;
+  html += `<p><strong>How does this relate to payload?</strong> ${data.reflection_relate || 'No Entry'}</p>`;
 
-            <h3>💬 Reflection</h3>
-            <div class="form-group">
-                <label for="reflection_worked">What worked best?</label>
-                <textarea id="reflection_worked" name="reflection_worked" rows="3"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="reflection_change">What would you change?</label>
-                <textarea id="reflection_change" name="reflection_change" rows="3"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="reflection_relate">How does this relate to rocket payload design?</label>
-                <textarea id="reflection_relate" name="reflection_relate" rows="3"></textarea>
-            </div>
+  html += `<p style="margin-top: 20px; font-style: italic;">Full details are available in the Google Sheet log.</p>`;
 
-            <button type="submit" class="btn-submit">Submit Notes to TerraNova Lab</button>
-        </form>
-    </div>
-</body>
-</html>
+  return html;
+}
