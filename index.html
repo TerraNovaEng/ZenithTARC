@@ -1,190 +1,283 @@
----
-layout: page
-title: TARC Redesign Log
-permalink: /tarc-notes/
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TARC Redesign & Payload Notes - Zenith Team</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            margin: auto;
+        }
+        h1 {
+            color: #007bff;
+            text-align: center;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #28a745;
+            border-bottom: 1px solid #28a745;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        .header-logo {
+            text-align: center;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input[type="text"], textarea, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 5px;
+        }
+        textarea {
+            resize: vertical;
+        }
+        .table-container {
+            overflow-x: auto;
+            margin-top: 15px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .checkbox-group label {
+            display: inline-block;
+            font-weight: normal;
+            margin-right: 15px;
+        }
+        .sketch-area {
+            min-height: 200px;
+            border: 1px dashed #999;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #fafafa;
+        }
+        .btn-submit {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1.1em;
+            margin-top: 20px;
+            display: block;
+            width: 100%;
+        }
+        .btn-submit:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-logo">🚀 TerraNova Engineering Lab - TARC Zenith Team</div>
+        <h1>TARC Redesign & Payload Safety Challenge Notes</h1>
+        <p style="text-align: center; font-style: italic;">Mission: Build for altitude, protect the astronaut (egg).</p>
 
-<div class="container">
-    <header class="page-header">
-        <div class="header-logo">🚀 TerraNova Engineering Lab - TARC Zenith Team</div>
-        <h1>TARC Redesign & Payload Safety Challenge Notes</h1>
-        <p style="text-align: center; font-style: italic;">Mission: Build for altitude, protect the astronaut (egg).</p>
-    </header>
+        <form action="YOUR_SERVER_ENDPOINT" method="POST">
+            <h2>🔧 Section 1: Rocket Redesign Log</h2>
 
-    <form action="https://script.google.com/macros/s/AKfycbyAp1hhZq_ZgBaaCiwbrVyttOo1bhWhMm1vKnZ_lSXx3HfPMuyWJs0x8eIlhU0N7JEuPw/exec" method="POST">
-        
-        <section class="form-section">
-            <h2>🔧 Section 1: Rocket Redesign Log</h2>
+            <div class="form-group">
+                <label for="rocket_name">Rocket Name:</label>
+                <input type="text" id="rocket_name" name="rocket_name">
+            </div>
 
-            <div class="form-group">
-                <label for="rocket_name">Rocket Name:</label>
-                <input type="text" id="rocket_name" name="rocket_name" required>
-            </div>
+            <div class="form-group">
+                <label for="original_motor">Original Motor:</label>
+                <input type="text" id="original_motor" name="original_motor">
+            </div>
 
-            <div class="form-group">
-                <label for="original_motor">Original Motor:</label>
-                <input type="text" id="original_motor" name="original_motor">
-            </div>
+            <div class="form-group">
+                <label>New Motor Options:</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="new_motor" value="C11-5"> C11-5</label>
+                    <label><input type="checkbox" name="new_motor" value="D12-5"> D12-5</label>
+                    <label><input type="checkbox" name="new_motor" value="E9-6"> E9-6</label>
+                    <label><input type="checkbox" name="new_motor" value="Other"> Other:</label>
+                    <input type="text" name="other_motor_spec" placeholder="Specify if 'Other' is checked" style="width: 30%;">
+                </div>
+            </div>
 
-            <div class="form-group">
-                <label>New Motor Options:</label>
-                <div class="checkbox-group">
-                    <label><input type="checkbox" name="new_motor" value="C11-5"> C11-5</label>
-                    <label><input type="checkbox" name="new_motor" value="D12-5"> D12-5</label>
-                    <label><input type="checkbox" name="new_motor" value="E9-6"> E9-6</label>
-                    <label><input type="checkbox" name="new_motor" value="Other"> Other:</label>
-                    <input type="text" name="other_motor_spec" placeholder="Specify if 'Other' is checked" style="width: 30%;">
-                </div>
-            </div>
+            <div class="form-group">
+                <label>Recovery System:</label>
+                <div class="checkbox-group">
+                    <label><input type="radio" name="recovery_system" value="Parachute"> Parachute</label>
+                    <label><input type="radio" name="recovery_system" value="Dual Deployment"> Dual Deployment</label>
+                    <label><input type="radio" name="recovery_system" value="Other"> Other:</label>
+                    <input type="text" name="other_recovery_spec" placeholder="Specify if 'Other' is checked" style="width: 30%;">
+                </div>
+            </div>
 
-            <div class="form-group">
-                <label>Recovery System:</label>
-                <div class="checkbox-group">
-                    <label><input type="radio" name="recovery_system" value="Parachute"> Parachute</label>
-                    <label><input type="radio" name="recovery_system" value="Dual Deployment"> Dual Deployment</label>
-                    <label><input type="radio" name="recovery_system" value="Other"> Other:</label>
-                    <input type="text" name="other_recovery_spec" placeholder="Specify if 'Other' is checked" style="width: 30%;">
-                </div>
-            </div>
+            <h3>✏️ Design Notes</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Component</th>
+                            <th>Original Specs</th>
+                            <th>Redesign Plan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Nose Cone</td>
+                            <td><textarea name="nc_original" rows="2"></textarea></td>
+                            <td><textarea name="nc_redesign" rows="2"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td>Body Tube</td>
+                            <td><textarea name="bt_original" rows="2"></textarea></td>
+                            <td><textarea name="bt_redesign" rows="2"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td>Fins</td>
+                            <td><textarea name="fins_original" rows="2"></textarea></td>
+                            <td><textarea name="fins_redesign" rows="2"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td>Motor Mount</td>
+                            <td><textarea name="motor_original" rows="2"></textarea></td>
+                            <td><textarea name="motor_redesign" rows="2"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td>Payload Bay</td>
+                            <td><textarea name="payload_original" rows="2"></textarea></td>
+                            <td><textarea name="payload_redesign" rows="2"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td>CG / CP</td>
+                            <td><textarea name="cgcp_original" rows="2"></textarea></td>
+                            <td><textarea name="cgcp_redesign" rows="2"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td>Stability Margin</td>
+                            <td><textarea name="stability_original" rows="2"></textarea></td>
+                            <td><textarea name="stability_redesign" rows="2"></textarea></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-            <h3>✏️ Design Notes</h3>
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Component</th>
-                            <th>Original Specs</th>
-                            <th>Redesign Plan</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Nose Cone</td>
-                            <td><textarea name="nc_original" rows="2"></textarea></td>
-                            <td><textarea name="nc_redesign" rows="2"></textarea></td>
-                        </tr>
-                        <tr>
-                            <td>Body Tube</td>
-                            <td><textarea name="bt_original" rows="2"></textarea></td>
-                            <td><textarea name="bt_redesign" rows="2"></textarea></td>
-                        </tr>
-                        <tr>
-                            <td>Fins</td>
-                            <td><textarea name="fins_original" rows="2"></textarea></td>
-                            <td><textarea name="fins_redesign" rows="2"></textarea></td>
-                        </tr>
-                        <tr>
-                            <td>Motor Mount</td>
-                            <td><textarea name="motor_original" rows="2"></textarea></td>
-                            <td><textarea name="motor_redesign" rows="2"></textarea></td>
-                        </tr>
-                        <tr>
-                            <td>Payload Bay</td>
-                            <td><textarea name="payload_original" rows="2"></textarea></td>
-                            <td><textarea name="payload_redesign" rows="2"></textarea></td>
-                        </tr>
-                        <tr>
-                            <td>CG / CP</td>
-                            <td><textarea name="cgcp_original" rows="2"></textarea></td>
-                            <td><textarea name="cgcp_redesign" rows="2"></textarea></td>
-                        </tr>
-                        <tr>
-                            <td>Stability Margin</td>
-                            <td><textarea name="stability_original" rows="2"></textarea></td>
-                            <td><textarea name="stability_redesign" rows="2"></textarea></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
+            <h2>📊 Section 2: Simulation Results</h2>
+            <div class="form-group">
+                <label for="apogee">Apogee:</label>
+                <input type="text" id="apogee" name="apogee" placeholder="e.g., 255.4 m">
+            </div>
+            <div class="form-group">
+                <label for="max_velocity">Max Velocity:</label>
+                <input type="text" id="max_velocity" name="max_velocity" placeholder="e.g., 120.9 m/s">
+            </div>
+            <div class="form-group">
+                <label for="stability_cal">Stability:</label>
+                <input type="text" id="stability_cal" name="stability_cal" placeholder="e.g., 1.7 cal (Calibers)">
+            </div>
+            <div class="form-group">
+                <label>Recovery Deployment:</label>
+                <div class="checkbox-group">
+                    <label><input type="radio" name="recovery_deployment" value="At Apogee"> At Apogee</label>
+                    <label><input type="radio" name="recovery_deployment" value="Delayed"> Delayed</label>
+                    <label><input type="radio" name="recovery_deployment" value="Failed"> Failed</label>
+                </div>
+            </div>
 
-        <section class="form-section">
-            <h2>📊 Section 2: Simulation Results</h2>
-            <div class="form-group">
-                <label for="apogee">Apogee:</label>
-                <input type="text" id="apogee" name="apogee" placeholder="e.g., 255.4 m">
-            </div>
-            <div class="form-group">
-                <label for="max_velocity">Max Velocity:</label>
-                <input type="text" id="max_velocity" name="max_velocity" placeholder="e.g., 120.9 m/s">
-            </div>
-            <div class="form-group">
-                <label for="stability_cal">Stability:</label>
-                <input type="text" id="stability_cal" name="stability_cal" placeholder="e.g., 1.7 cal (Calibers)">
-            </div>
-            <div class="form-group">
-                <label>Recovery Deployment:</label>
-                <div class="checkbox-group">
-                    <label><input type="radio" name="recovery_deployment" value="At Apogee"> At Apogee</label>
-                    <label><input type="radio" name="recovery_deployment" value="Delayed"> Delayed</label>
-                    <label><input type="radio" name="recovery_deployment" value="Failed"> Failed</label>
-                </div>
-            </div>
-        </section>
+            <h2>🥚 Section 3: Egg Protection Lab</h2>
+            <p style="font-style: italic;">Objective: Design and test a cradle that protects an egg (mass ~60g) from impact.</p>
 
-        <section class="form-section">
-            <h2>🥚 Section 3: Egg Protection Lab</h2>
-            <p style="font-style: italic;">Objective: Design and test a cradle that protects an egg (mass ~60g) from impact.</p>
+            <h3>🧪 Materials Tested</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Material</th>
+                            <th>Drop Height (m)</th>
+                            <th>Result (Intact/Cracked/Shattered)</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Foam</td>
+                            <td><input type="text" name="foam_drop_height"></td>
+                            <td><input type="text" name="foam_result"></td>
+                            <td><textarea name="foam_notes" rows="1"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td>Bubble Wrap</td>
+                            <td><input type="text" name="bubble_drop_height"></td>
+                            <td><input type="text" name="bubble_result"></td>
+                            <td><textarea name="bubble_notes" rows="1"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td>3D Print Cradle</td>
+                            <td><input type="text" name="print_drop_height"></td>
+                            <td><input type="text" name="print_result"></td>
+                            <td><textarea name="print_notes" rows="1"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td>Other: <input type="text" name="other_material_name"></td>
+                            <td><input type="text" name="other_drop_height"></td>
+                            <td><input type="text" name="other_result"></td>
+                            <td><textarea name="other_notes" rows="1"></textarea></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-            <h3>🧪 Materials Tested</h3>
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Material</th>
-                            <th>Drop Height (m)</th>
-                            <th>Result (Intact/Cracked/Shattered)</th>
-                            <th>Notes</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Foam</td>
-                            <td><input type="text" name="foam_drop_height"></td>
-                            <td><input type="text" name="foam_result"></td>
-                            <td><textarea name="foam_notes" rows="1"></textarea></td>
-                        </tr>
-                        <tr>
-                            <td>Bubble Wrap</td>
-                            <td><input type="text" name="bubble_drop_height"></td>
-                            <td><input type="text" name="bubble_result"></td>
-                            <td><textarea name="bubble_notes" rows="1"></textarea></td>
-                        </tr>
-                        <tr>
-                            <td>3D Print Cradle</td>
-                            <td><input type="text" name="print_drop_height"></td>
-                            <td><input type="text" name="print_result"></td>
-                            <td><textarea name="print_notes" rows="1"></textarea></td>
-                        </tr>
-                        <tr>
-                            <td>Other: <input type="text" name="other_material_name"></td>
-                            <td><input type="text" name="other_drop_height"></td>
-                            <td><input type="text" name="other_result"></td>
-                            <td><textarea name="other_notes" rows="1"></textarea></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <h3>✏️ Sketch Your Cradle</h3>
+            <label for="sketch_notes">📐 (Use this space to describe and annotate your design, or indicate where the sketch is stored, e.g., 'Sketch attached on GitHub')</label>
+            <textarea id="sketch_notes" name="sketch_notes" class="sketch-area" placeholder="Describe the final payload cradle design here (dimensions, materials, suspension method, etc.)."></textarea>
 
-            <h3>✏️ Sketch Your Cradle</h3>
-            <label for="sketch_notes">📐 (Use this space to describe and annotate your design, or indicate where the sketch is stored, e.g., 'Sketch attached on GitHub')</label>
-            <textarea id="sketch_notes" name="sketch_notes" class="sketch-area" placeholder="Describe the final payload cradle design here (dimensions, materials, suspension method, etc.)."></textarea>
+            <h3>💬 Reflection</h3>
+            <div class="form-group">
+                <label for="reflection_worked">What worked best?</label>
+                <textarea id="reflection_worked" name="reflection_worked" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="reflection_change">What would you change?</label>
+                <textarea id="reflection_change" name="reflection_change" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="reflection_relate">How does this relate to rocket payload design?</label>
+                <textarea id="reflection_relate" name="reflection_relate" rows="3"></textarea>
+            </div>
 
-            <h3>💬 Reflection</h3>
-            <div class="form-group">
-                <label for="reflection_worked">What worked best?</label>
-                <textarea id="reflection_worked" name="reflection_worked" rows="3"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="reflection_change">What would you change?</label>
-                <textarea id="reflection_change" name="reflection_change" rows="3"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="reflection_relate">How does this relate to rocket payload design?</label>
-                <textarea id="reflection_relate" name="reflection_relate" rows="3"></textarea>
-            </div>
-        </section>
-
-        <button type="submit" class="btn-submit">Submit Notes to TerraNova Lab</button>
-    </form>
+            <button type="submit" class="btn-submit">Submit Notes to TerraNova Lab</button>
+        </form>
+    </div>
+</body> //i can't find the var id, can you update the code with the var id the web app link https://script.google.com/macros/s/AKfycbyAp1hhZq_ZgBaaCiwbrVyttOo1bhWhMm1vKnZ_lSXx3HfPMuyWJs0x8eIlhU0N7JEuPw/exec and deployment id if you need AKfycbyAp1hhZq_ZgBaaCiwbrVyttOo1bhWhMm1vKnZ_lSXx3HfPMuyWJs0x8eIlhU0N7JEuPw
 </div>
