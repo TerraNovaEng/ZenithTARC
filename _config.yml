@@ -4,7 +4,7 @@ theme: jekyll-theme-architect
 
 # Optional extras
 show_downloads: false
-google_analytics: 
+//google_analytics: null #
 markdown: kramdown
 
 # Navigation structure (optional for sidebar themes)
