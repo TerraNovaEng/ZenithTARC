@@ -104,22 +104,24 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header-logo">🚀 TerraNova Engineering Lab - TARC Zenith Team</div>
-        <h1>TARC Redesign & Payload Safety Challenge Notes</h1>
-        <p style="text-align: center; font-style: italic;">Mission: Build for altitude, protect the astronaut (egg).</p>
+<div class="container">
+    <div class="header-logo">🚀 TerraNova Engineering Lab - TARC Zenith Team</div>
+    <h1 style="border-bottom: 2px solid #007bff; padding-bottom: 10px;">TARC Redesign & Payload Safety Challenge Notes</h1>
+    <p style="text-align: center; font-style: italic;">Mission: Build for altitude, protect the astronaut (egg).</p>
 
-        <form action="https://script.google.com/macros/s/AKfycbyAp1hhZq_ZgBaaCiwbrVyttOo1bhWhMm1vKnZ_lSXx3HfPMuyWJs0x8eIlhU0N7JEuPw/exec" method="POST">
-            <h2>🔧 Section 1: Rocket Redesign Log</h2>
+    <form id="tarc-form" action="https://script.google.com/macros/s/AKfycbyAp1hhZq_ZgBaaCiwbrVyttOo1bhWhMm1vKnZ_lSXx3HfPMuyWJs0x8eIlhU0N7JEuPw/exec" method="POST">
+        
+        <section>
+            <h2 style="color: #28a745; border-bottom: 1px solid #28a745;">🔧 Section 1: Rocket Redesign Log</h2>
 
             <div class="form-group">
                 <label for="rocket_name">Rocket Name:</label>
-                <input type="text" id="rocket_name" name="rocket_name">
+                <input type="text" id="rocket_name" name="rocket_name" class="form-control">
             </div>
 
             <div class="form-group">
                 <label for="original_motor">Original Motor:</label>
-                <input type="text" id="original_motor" name="original_motor">
+                <input type="text" id="original_motor" name="original_motor" class="form-control">
             </div>
 
             <div class="form-group">
@@ -145,7 +147,7 @@
 
             <h3>✏️ Design Notes</h3>
             <div class="table-container">
-                <table>
+                <table class="table-striped">
                     <thead>
                         <tr>
                             <th>Component</th>
@@ -192,19 +194,21 @@
                     </tbody>
                 </table>
             </div>
+        </section>
 
-            <h2>📊 Section 2: Simulation Results</h2>
+        <section>
+            <h2 style="color: #28a745; border-bottom: 1px solid #28a745;">📊 Section 2: Simulation Results</h2>
             <div class="form-group">
                 <label for="apogee">Apogee:</label>
-                <input type="text" id="apogee" name="apogee" placeholder="e.g., 255.4 m">
+                <input type="text" id="apogee" name="apogee" placeholder="e.g., 255.4 m" class="form-control">
             </div>
             <div class="form-group">
                 <label for="max_velocity">Max Velocity:</label>
-                <input type="text" id="max_velocity" name="max_velocity" placeholder="e.g., 120.9 m/s">
+                <input type="text" id="max_velocity" name="max_velocity" placeholder="e.g., 120.9 m/s" class="form-control">
             </div>
             <div class="form-group">
                 <label for="stability_cal">Stability:</label>
-                <input type="text" id="stability_cal" name="stability_cal" placeholder="e.g., 1.7 cal (Calibers)">
+                <input type="text" id="stability_cal" name="stability_cal" placeholder="e.g., 1.7 cal (Calibers)" class="form-control">
             </div>
             <div class="form-group">
                 <label>Recovery Deployment:</label>
@@ -214,13 +218,15 @@
                     <label><input type="radio" name="recovery_deployment" value="Failed"> Failed</label>
                 </div>
             </div>
+        </section>
 
-            <h2>🥚 Section 3: Egg Protection Lab</h2>
+        <section>
+            <h2 style="color: #28a745; border-bottom: 1px solid #28a745;">🥚 Section 3: Egg Protection Lab</h2>
             <p style="font-style: italic;">Objective: Design and test a cradle that protects an egg (mass ~60g) from impact.</p>
 
             <h3>🧪 Materials Tested</h3>
             <div class="table-container">
-                <table>
+                <table class="table-striped">
                     <thead>
                         <tr>
                             <th>Material</th>
@@ -232,26 +238,26 @@
                     <tbody>
                         <tr>
                             <td>Foam</td>
-                            <td><input type="text" name="foam_drop_height"></td>
-                            <td><input type="text" name="foam_result"></td>
+                            <td><input type="text" name="foam_drop_height" class="form-control"></td>
+                            <td><input type="text" name="foam_result" class="form-control"></td>
                             <td><textarea name="foam_notes" rows="1"></textarea></td>
                         </tr>
                         <tr>
                             <td>Bubble Wrap</td>
-                            <td><input type="text" name="bubble_drop_height"></td>
-                            <td><input type="text" name="bubble_result"></td>
+                            <td><input type="text" name="bubble_drop_height" class="form-control"></td>
+                            <td><input type="text" name="bubble_result" class="form-control"></td>
                             <td><textarea name="bubble_notes" rows="1"></textarea></td>
                         </tr>
                         <tr>
                             <td>3D Print Cradle</td>
-                            <td><input type="text" name="print_drop_height"></td>
-                            <td><input type="text" name="print_result"></td>
+                            <td><input type="text" name="print_drop_height" class="form-control"></td>
+                            <td><input type="text" name="print_result" class="form-control"></td>
                             <td><textarea name="print_notes" rows="1"></textarea></td>
                         </tr>
                         <tr>
-                            <td>Other: <input type="text" name="other_material_name"></td>
-                            <td><input type="text" name="other_drop_height"></td>
-                            <td><input type="text" name="other_result"></td>
+                            <td>Other: <input type="text" name="other_material_name" class="form-control" style="width: 100px;"></td>
+                            <td><input type="text" name="other_drop_height" class="form-control"></td>
+                            <td><input type="text" name="other_result" class="form-control"></td>
                             <td><textarea name="other_notes" rows="1"></textarea></td>
                         </tr>
                     </tbody>
@@ -260,7 +266,7 @@
 
             <h3>✏️ Sketch Your Cradle</h3>
             <label for="sketch_notes">📐 (Use this space to describe and annotate your design, or indicate where the sketch is stored, e.g., 'Sketch attached on GitHub')</label>
-            <textarea id="sketch_notes" name="sketch_notes" class="sketch-area" placeholder="Describe the final payload cradle design here (dimensions, materials, suspension method, etc.)."></textarea>
+            <textarea id="sketch_notes" name="sketch_notes" class="form-control" rows="8" placeholder="Describe the final payload cradle design here (dimensions, materials, suspension method, etc.)."></textarea>
 
             <h3>💬 Reflection</h3>
             <div class="form-group">
@@ -275,9 +281,51 @@
                 <label for="reflection_relate">How does this relate to rocket payload design?</label>
                 <textarea id="reflection_relate" name="reflection_relate" rows="3"></textarea>
             </div>
+        </section>
 
-            <button type="submit" class="btn-submit">Submit Notes to TerraNova Lab</button>
-        </form>
-    </div>
-</body>
-</html>
+        <button type="submit" class="btn btn-primary btn-block">Submit Notes to TerraNova Lab</button>
+    </form>
+
+    <div id="form-messages" style="margin-top: 20px;"></div>
+</div>
+
+<script>
+    // This script prevents the 405 error and sends data directly to Google Apps Script.
+    var form = document.getElementById('tarc-form');
+    var formMessages = document.getElementById('form-messages');
+
+    form.addEventListener('submit', function(e) {
+        // Stop the default GitHub Pages POST action
+        e.preventDefault();
+        
+        formMessages.innerHTML = '<p style="color: blue;">Submitting notes... please wait.</p>';
+
+        var data = new FormData(form);
+        
+        // Send data directly to the Google Apps Script Web App URL
+        fetch(form.action, {
+            method: 'POST',
+            body: data
+        })
+        .then(response => {
+            // Check for success (200 OK)
+            if (response.ok) {
+                return response.text();
+            } else {
+                throw new Error('Form submission failed.');
+            }
+        })
+        .then(html => {
+            // Display the success message received from the Google Script
+            formMessages.innerHTML = '<div style="color: green; font-weight: bold;">' + html + '</div>';
+            form.reset(); // Clear the form fields
+        })
+        .catch(error => {
+            // Display error message
+            console.error('Submission Error:', error);
+            formMessages.innerHTML = '<div style="color: red; font-weight: bold;">Error submitting data. Please check your network connection or contact the administrator.</div>';
+        });
+    });
+</script>
+   
+              
