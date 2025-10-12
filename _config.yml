@@ -1,0 +1,22 @@
+title: TerraNova TARC Team
+description: Launching curiosity, teamwork, and engineering excellence through the American Rocketry Challenge.
+theme: jekyll-theme-architect
+
+# Optional extras
+show_downloads: false
+google_analytics: 
+markdown: kramdown
+
+# Navigation structure (optional for sidebar themes)
+navigation:
+  - title: Mission Overview
+    url: /mission
+  - title: Team Members
+    url: /team
+  - title: Design Log
+    url: /design-log
+  - title: Safety Docs
+    url: /safety
+  - title: Launch Gallery
+    url: /gallery
+
