@@ -275,7 +275,7 @@
             console.error('Submission Error:', error);
             msgBox.style.backgroundColor = '#f8d7da';
             msgBox.style.color = '#721c24';
-            msgBox.innerHTML = '❌ ERROR: Submission failed. Check connection.';
+            msgBox.innerHTML = ' Submission connection.';
         });
     });
 </script>
