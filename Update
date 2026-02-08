@@ -6,7 +6,7 @@
     <title>TARC Redesign & Payload Notes - Zenith Team</title>
     <style>
         :root {
-            --primary: #007bff;
+            --primary: #1a365d;
             --success: #28a745;
             --bg: #f4f4f9;
             --text: #333;
@@ -50,76 +50,25 @@
             background: #f0fff4;
             padding-block: 10px;
         }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 8px;
-        }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-weight: bold; margin-bottom: 8px; }
         input[type="text"], textarea, select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            box-sizing: border-box;
-            font-size: 16px;
+            width: 100%; padding: 12px; border: 1px solid #ddd;
+            border-radius: 6px; box-sizing: border-box; font-size: 16px;
         }
-        .table-container {
-            overflow-x: auto;
-            margin-top: 15px;
-            border-radius: 8px;
-            border: 1px solid #eee;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-        }
-        th, td {
-            border: 1px solid #eee;
-            padding: 12px;
-            text-align: left;
-        }
-        th {
-            background-color: #f8f9fa;
-            font-weight: 600;
-        }
-        .checkbox-group label {
-            display: inline-flex;
-            align-items: center;
-            font-weight: normal;
-            margin-right: 20px;
-            cursor: pointer;
-        }
-        .checkbox-group input {
-            margin-right: 8px;
-        }
+        .table-container { overflow-x: auto; margin-top: 15px; border-radius: 8px; border: 1px solid #eee; }
+        table { width: 100%; border-collapse: collapse; background: white; }
+        th, td { border: 1px solid #eee; padding: 12px; text-align: left; }
+        th { background-color: #f8f9fa; font-weight: 600; }
         .btn-submit {
-            background-color: var(--primary);
-            color: white;
-            padding: 15px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1.2em;
-            font-weight: bold;
-            margin-top: 30px;
-            display: block;
-            width: 100%;
-            transition: background 0.2s;
-        }
-        .btn-submit:hover {
-            background-color: #0056b3;
+            background-color: var(--primary); color: white; padding: 15px;
+            border: none; border-radius: 8px; cursor: pointer;
+            font-size: 1.2em; font-weight: bold; margin-top: 30px;
+            display: block; width: 100%; transition: background 0.2s;
         }
         #form-messages {
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 6px;
-            display: none;
-            text-align: center;
-            font-weight: bold;
+            margin-top: 20px; padding: 15px; border-radius: 6px;
+            display: none; text-align: center; font-weight: bold;
         }
     </style>
 </head>
@@ -143,18 +92,6 @@
                 <input type="text" id="original_motor" name="original_motor" placeholder="e.g., Estes E9">
             </div>
 
-            <div class="form-group">
-                <label>New Motor Options:</label>
-                <div class="checkbox-group">
-                    <label><input type="checkbox" name="new_motor" value="C11-5"> C11-5</label>
-                    <label><input type="checkbox" name="new_motor" value="D12-5"> D12-5</label>
-                    <label><input type="checkbox" name="new_motor" value="E9-6"> E9-6</label>
-                    <label><input type="checkbox" name="new_motor" value="Other"> Other:</label>
-                    <input type="text" name="other_motor_spec" placeholder="Spec" style="width: 100px; display: inline-block;">
-                </div>
-            </div>
-
-            <h3>✏️ Design Comparison</h3>
             <div class="table-container">
                 <table>
                     <thead>
@@ -169,11 +106,6 @@
                             <td>Nose Cone</td>
                             <td><textarea name="nc_original" rows="2"></textarea></td>
                             <td><textarea name="nc_redesign" rows="2"></textarea></td>
-                        </tr>
-                        <tr>
-                            <td>Body Tube</td>
-                            <td><textarea name="bt_original" rows="2"></textarea></td>
-                            <td><textarea name="bt_redesign" rows="2"></textarea></td>
                         </tr>
                         <tr>
                             <td>Fins</td>
@@ -200,34 +132,6 @@
         </section>
 
         <section>
-            <h2>🥚 Section 3: Egg Protection Lab</h2>
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Material</th>
-                            <th>Height (m)</th>
-                            <th>Result</th>
-                            <th>Notes</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Foam</td>
-                            <td><input type="text" name="foam_h"></td>
-                            <td><input type="text" name="foam_r"></td>
-                            <td><textarea name="foam_n" rows="1"></textarea></td>
-                        </tr>
-                        <tr>
-                            <td>Bubble Wrap</td>
-                            <td><input type="text" name="bubble_h"></td>
-                            <td><input type="text" name="bubble_r"></td>
-                            <td><textarea name="bubble_n" rows="1"></textarea></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
             <h3 style="margin-top:20px;">💬 Reflection</h3>
             <div class="form-group">
                 <label>What worked best?</label>
@@ -253,29 +157,32 @@
         msgBox.style.color = '#0056b3';
         msgBox.innerHTML = 'Submitting to Lab... please wait.';
 
-        const data = new FormData(form);
+        // FIX: Using URLSearchParams ensures Google Apps Script can parse the parameters
+        const formData = new FormData(form);
+        const params = new URLSearchParams();
         
-        // Critical: Using mode 'no-cors' prevents the browser from blocking the redirect
+        for (const pair of formData) {
+            params.append(pair[0], pair[1]);
+        }
+        
         fetch(form.action, {
             method: 'POST',
-            body: data,
+            body: params,
             mode: 'no-cors' 
         })
         .then(() => {
-            // Because of 'no-cors', we manually trigger success UI
+            // Success UI
             msgBox.style.backgroundColor = '#d4edda';
             msgBox.style.color = '#155724';
             msgBox.innerHTML = '✅ SUCCESS: Notes filed in TerraNova Engineering Lab.';
             form.reset();
-            
-            // Scroll to message
             msgBox.scrollIntoView({ behavior: 'smooth' });
         })
         .catch(error => {
             console.error('Submission Error:', error);
             msgBox.style.backgroundColor = '#f8d7da';
             msgBox.style.color = '#721c24';
-            msgBox.innerHTML = ' Submission connection.';
+            msgBox.innerHTML = '❌ ERROR: Submission failed. Check connection.';
         });
     });
 </script>
